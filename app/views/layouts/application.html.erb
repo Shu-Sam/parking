@@ -11,9 +11,21 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-  <%= yield %>
+    <div class="container main">
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'shared/nav' %>
+
+          <%= render 'shared/flash' %>
+
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+    </div>
+
   </body>
 </html>

@@ -1,0 +1,13 @@
+<nav class="navbar navbar-light bg-info">
+  <%= link_to image_tag("nav_parking_sign.jpeg", size: "40x40"), root_path, title: 'Home page', class: 'navbar-brand' %>
+
+  <span class='navbar-text'>
+    <% if user_signed_in? %>
+      Welcome,<b><%= current_user.name.capitalize %></b>!|
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-link' %>
+    <% else %>
+      <%= link_to 'Log in', new_session_path(resource_name) %>|
+      <%= link_to 'Sign up', new_registration_path(resource_name) %>
+    <% end %>
+  </span>
+</nav>
