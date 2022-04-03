@@ -1,20 +1,19 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.2'
+ruby '3.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.1'
+gem 'rails', '~> 7.0', '>= 7.0.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+
+gem 'sprockets-rails', '~> 3.4'
+gem 'jsbundling-rails', '~> 1.0', '>= 1.0.2'
+gem 'cssbundling-rails', '~> 1.1'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -22,10 +21,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'jquery-rails', '~> 4.4'
-
 #Use divise for auth
-gem 'devise'
+gem 'devise', '~> 4.8', '>= 4.8.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -49,6 +46,8 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # help to kill N+1 queries
+  gem 'bullet', '~> 7.0', '>= 7.0.1'
 
   gem 'letter_opener'
 end
