@@ -1,0 +1,7 @@
+<%= render @car_park %>
+
+<div>
+  <%= link_to "Edit", edit_car_park_path(@car_park) %> |
+  <%= link_to "Back", car_parks_path %>
+  <%= button_to "Destroy", @car_park, method: :delete %>
+</div>
