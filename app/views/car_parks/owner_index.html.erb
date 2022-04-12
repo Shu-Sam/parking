@@ -1,19 +1,19 @@
-<div class="text-center text-wrap fs-3 fw-bold bg-warning">
+<div class="text-center text-wrap fs-3 fw-bold">
   <%= current_user.name %>'s parking
 </div>
 
-<%= link_to "New car park", new_car_park_path, class: 'btn btn-success' %>
+<%= link_to "New car park", new_car_park_path, class: 'btn btn-success mb-1' %>
 
-<table class="table table-dark table-striped table-sm ">
+<table class="table table-dark table-striped table-sm">
   <div id="car_parks">
-    <% @car_parks.each do |car_park| %>
-      <tr class="">
-        <td><%= link_to  "#{car_park.title}", car_park, class: 'btn text-warning text-uppercase' %></td>
-        <div>
-          <td><%= link_to "Edit", edit_car_park_path(car_park), class: 'btn btn-secondary' %></td>
-          <td><%= link_to "Delete", car_park_path(car_park), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
-        </div>
+    <% @car_parks.each do |cp| %>
+      <% present(cp) do |car_park| %>
+      <tr>
+        <td><%= link_to  "#{car_park.title}", '#', class: 'btn text-warning' %></td>
+        <td><%= link_to 'Edit', edit_car_park_path(car_park), class: 'btn btn-sm btn-secondary' %></td>
+        <td><%= link_to 'Delete', car_park_path(car_park), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger' %></td>
       </tr>
+      <% end %>
     <% end %>
   </div>
 </table>

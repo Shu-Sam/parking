@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 
 #Use divise for auth
 gem 'devise', '~> 4.8', '>= 4.8.1'
-
+gem 'draper', '~> 4.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -35,6 +35,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop-rails', '~> 2.13', '>= 2.13.2', require: false
   gem 'rubocop-rspec', '~> 2.8', require: false
+  gem 'faker', '~> 2.20'
 end
 
 group :development do

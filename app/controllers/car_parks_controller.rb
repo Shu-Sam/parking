@@ -1,14 +1,13 @@
 class CarParksController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_car_park, only: %i[show edit update destroy]
 
   def index
-    if authenticate_user! && current_user.owner_role?
-      @car_parks = current_user.owned_car_parks
+    if current_user&.owner_role?
+      @car_parks = current_user.car_parks
       render 'owner_index'
     else
       @car_parks = CarPark.all
-      render 'driver_index'
     end
   end
 
@@ -21,10 +20,9 @@ class CarParksController < ApplicationController
   def edit; end
 
   def create
-    @car_park = CarPark.new(car_park_params)
-    @car_park.owner = current_user
+    @car_park = current_user.car_parks.build(car_park_params)
     if @car_park.save
-      redirect_to car_park_url(@car_park), notice: 'Car park was successfully created.'
+      redirect_to car_parks_path, notice: 'Car park was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

@@ -8,7 +8,9 @@ import 'jquery'
 import 'jquery-ujs'
 import 'bootstrap/dist/js/bootstrap.bundle'
 
+import '@popperjs/core'
+import 'bootstrap/js/dist/dropdown'
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-

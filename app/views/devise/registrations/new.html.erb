@@ -15,7 +15,7 @@
 
             <p>
               <%= f.label :role %>:
-              <%= f.select :role, user_roles, {}, class: "form-select" %>
+              <%= f.select :role, present(resource) { |user| user.user_roles }, {}, class: "form-select" %>
             </p>
 
             <p>

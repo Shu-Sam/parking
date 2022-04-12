@@ -10,5 +10,5 @@ class User < ApplicationRecord
 
   enum role: { driver: 0, owner: 1, admin: 2 }, _suffix: :role
 
-  has_many :owned_car_parks, class_name: 'CarPark', foreign_key: :user_id
+  has_many :car_parks
 end

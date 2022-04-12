@@ -1,10 +1,13 @@
-<tr class="text-center">
-  <td><%= button_to 'Book', car_parks_path , class: 'btn btn-success'%></td>
-  <td><%= car_park.title %></td>
-  <td><%= car_park.address %></td>
-  <td><%= car_park.owner.name %></td>
-  <td><%= car_park.spaces %></td>
-  <td><%= car_park.parking_type %></td>
-  <td><%= car_park.usage_fee %></td>
-</tr>
-
+<tbody>
+  <% present(cp) do |car_park| %>
+    <tr class="text-center">
+      <td><%= link_to 'Book', '#' , class: 'btn btn-success'%></td>
+      <td><%= car_park.title %></td>
+      <td><%= car_park.address %></td>
+      <td><%= car_park.user.name %></td>
+      <td><%= car_park.spaces %></td>
+      <td><%= car_park.parking_type %></td>
+      <td><%= car_park.fee_currency_byn %></td>
+    </tr>
+  <% end %>
+</tbody>
