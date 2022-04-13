@@ -1,7 +1,28 @@
-<%= render @car_park %>
+  <% present(@car_park) do |car_park| %>
+    <p>
+      <strong>Title:</strong>
+      <%= car_park.title %>
+    </p>
+    <p>
+      <strong>Title:</strong>
+      <%= car_park.address %>
+    </p>
+    <p>
+      <strong>Type:</strong>
+      <%= car_park.parking_type %>
+    </p>
+    <p>
+      <strong>Usage fee:</strong>
+      <%= car_park.fee_currency_byn %>
+    </p>
+    <p>
+      <strong>Discount:</strong>
+      <%= car_park.discount_percentage %>
+    </p>
+    <p>
+      <strong>Number of spaces:</strong>
+      <%= car_park.spaces %>
+    </p>
+  <% end %>
 
-<div>
-  <%= link_to "Edit", edit_car_park_path(@car_park) %> |
-  <%= link_to "Back", car_parks_path %>
-  <%= button_to "Destroy", @car_park, method: :delete %>
-</div>
+<%= link_to "Back", car_parks_path, class: 'btn btn-sm btn-primary' %>

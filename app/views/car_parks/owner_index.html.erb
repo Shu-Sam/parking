@@ -11,6 +11,7 @@
       <tr>
         <td><%= link_to  "#{car_park.title}", '#', class: 'btn text-warning' %></td>
         <td><%= link_to 'Edit', edit_car_park_path(car_park), class: 'btn btn-sm btn-secondary' %></td>
+        <td><%= link_to 'Show', car_park_path(car_park), class: 'btn btn-sm btn-primary' %></td>
         <td><%= link_to 'Delete', car_park_path(car_park), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger' %></td>
       </tr>
       <% end %>
