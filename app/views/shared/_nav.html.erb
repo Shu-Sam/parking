@@ -1,13 +1,33 @@
-<nav class="navbar navbar-light bg-info">
-  <%= link_to image_tag("nav_parking_sign.jpeg", size: "40x40"), root_path, title: 'Home page', class: 'navbar-brand' %>
+<header class="p-2 bg-dark text-white">
+  <div class="container">
+    <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <ul class="nav col-12 col-lg-auto mb-2 me-lg-auto justify-content-center mb-md-0">
+        <li><%= link_to image_tag("nav_parking_sign.jpeg", size: "40", class: "rounded"), root_path, title: 'Home page', class: 'navbar-brand px-2' %></li>
+        <li><%= link_to 'Home', root_path , class: 'nav-link px-2 text-white' %></li>
+        <li><%= link_to 'Bookings', '#' , class: 'nav-link px-2 text-white' %></li>
+        <li><%= link_to 'Comments', '#' , class: 'nav-link px-2 text-white' %></li>
+      </ul>
 
-  <span class='navbar-text'>
-    <% if user_signed_in? %>
-      Welcome,<b><%= current_user.name.capitalize %></b>!|
-      <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-link' %>
-    <% else %>
-      <%= link_to 'Log in', new_session_path(resource_name) %>|
-      <%= link_to 'Sign up', new_registration_path(resource_name) %>
-    <% end %>
-  </span>
-</nav>
+      <ul class="nav-bar nav col-12 col-lg-auto mb-2 mb-md-0">
+        <% if user_signed_in? %>
+
+          <li class="dropdown">
+            <%= link_to '#', class: 'nav-link text-white px-2 dropdown-toggle', data: {"bs-toggle": 'dropdown'} do %>
+              <%= current_user.gravatar %>
+              <%= current_user.name_with_role %>
+            <% end %>
+
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><%= link_to 'Edit profile', edit_user_registration_path, class: 'nav-link text-white' %></li>
+              <li><%= link_to 'Logout', destroy_user_session_path, class: 'nav-link text-white', data: {method: :delete} %></li>
+            </ul>
+          </li>
+
+        <% else %>
+          <li class="nav-link px-2"><%= link_to 'Log in', new_user_session_path, class: 'btn btn-warning btn-sm' %></li>
+          <li class="nav-link px-2"><%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-warning btn-sm' %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

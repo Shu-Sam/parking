@@ -1,0 +1,10 @@
+<h1>Editing car park</h1>
+
+<%= render partial: 'form', locals: { car_park: @car_park, url: car_park_path(@car_park) }  %>
+
+
+<br>
+
+<div>
+  <%= link_to "Back", car_parks_path %>
+</div>

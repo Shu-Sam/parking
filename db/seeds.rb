@@ -1,7 +1,28 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+3.times do
+  name = Faker::Internet.username
+  email = Faker::Internet.email
+  owner = User.create(name: name,
+                      role: 'owner',
+                      email: email,
+                      password: 'qqq111')
+
+  3.times do
+    car_park_params = { title: Faker::Company.name,
+                        address: Faker::Address.street_address,
+                        parking_type: ["Ground parking", "Truck parking", "Underground guarded parking"].shuffle.first,
+                        usage_fee: rand(1..20),
+                        discount: rand(1..25),
+                        spaces: rand(5..1000),
+                        user_id: owner.id }
+    CarParkServices::CarParkCreator.call(car_park_params)
+  end
+end
+
+3.times do
+  name = Faker::Internet.username
+  email = Faker::Internet.email
+  User.create(name: name,
+              role: 'driver',
+              email: email,
+              password: 'qqq111')
+end

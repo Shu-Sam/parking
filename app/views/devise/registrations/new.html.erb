@@ -15,10 +15,7 @@
 
             <p>
               <%= f.label :role %>:
-              <%= f.label :user_role, "I'm a driver", class: "form-check-label" %>
-              <%= f.radio_button :role, "driver", class: "form-check-input" %> |
-              <%= f.label :user_role, "I'm the owner", class: "form-check-label" %>
-              <%= f.radio_button :role, "owner", class: "form-check-input" %>
+              <%= f.select :role, present(resource) { |user| user.user_roles }, {}, class: "form-select" %>
             </p>
 
             <p>

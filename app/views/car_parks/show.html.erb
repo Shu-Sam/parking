@@ -1,0 +1,28 @@
+  <% present(@car_park, CarParkPresenter) do |car_park| %>
+    <p>
+      <strong>Title:</strong>
+      <%= car_park.title %>
+    </p>
+    <p>
+      <strong>Title:</strong>
+      <%= car_park.address %>
+    </p>
+    <p>
+      <strong>Type:</strong>
+      <%= car_park.parking_type %>
+    </p>
+    <p>
+      <strong>Usage fee:</strong>
+      <%= car_park.fee_currency_byn %>
+    </p>
+    <p>
+      <strong>Discount:</strong>
+      <%= car_park.discount_percentage %>
+    </p>
+    <p>
+      <strong>Number of spaces:</strong>
+      <%= car_park.spaces %>
+    </p>
+  <% end %>
+
+<%= link_to "Back", car_parks_path, class: 'btn btn-sm btn-primary' %>

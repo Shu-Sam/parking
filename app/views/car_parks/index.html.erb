@@ -1,0 +1,16 @@
+<div class="text-center text-wrap fs-3 fw-bold text-uppercase">
+  Available car parks
+</div>
+
+<table class="table table-info table-striped table-sm ">
+  <tr class="text-center">
+    <th></th>
+    <th>Title</th>
+    <th>Address</th>
+    <th>Owner</th>
+    <th>Spaces</th>
+    <th>Parking type</th>
+    <th>Usage fee/ per hour</th>
+  </tr>
+  <%= render partial: 'car_park', collection: @car_parks, as: :cp %>
+</table>
