@@ -1,5 +1,5 @@
-module CarParkServices
-  class CarParkRemover < ApplicationService
+module CarPark
+  class Remover < ApplicationService
     attr_reader :car_park
 
     def initialize(car_park)

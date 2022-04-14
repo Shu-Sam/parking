@@ -1,6 +1,6 @@
 <h1>New car park</h1>
 
-<%= render "form", car_park: @car_park %>
+<%= render partial: 'form', locals: { car_park: @car_park, url: car_parks_path }  %>
 
 <br>
 

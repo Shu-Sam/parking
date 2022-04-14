@@ -7,7 +7,7 @@
 <table class="table table-dark table-striped table-sm">
   <div id="car_parks">
     <% @car_parks.each do |cp| %>
-      <% present(cp) do |car_park| %>
+      <% present(cp, CarParkPresenter) do |car_park| %>
       <tr>
         <td><%= link_to  "#{car_park.title}", '#', class: 'btn text-warning' %></td>
         <td><%= link_to 'Edit', edit_car_park_path(car_park), class: 'btn btn-sm btn-secondary' %></td>

@@ -1,5 +1,5 @@
-module CarParkServices
-  class CarParkFinder < ApplicationService
+module CarPark
+  class Finder < ApplicationService
     attr_reader :car_park_id
 
     def initialize(car_park_id)
@@ -13,7 +13,7 @@ module CarParkServices
     private
 
     def set_car_park
-      CarPark.find(car_park_id)
+      Ar::CarPark.find(car_park_id)
     end
   end
 end

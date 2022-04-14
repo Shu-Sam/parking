@@ -1,4 +1,4 @@
-  <% present(@car_park) do |car_park| %>
+  <% present(@car_park, CarParkPresenter) do |car_park| %>
     <p>
       <strong>Title:</strong>
       <%= car_park.title %>
