@@ -37,7 +37,7 @@ class CarParksController < ApplicationController
 
   def destroy
     CarPark::Remover.call(@car_park)
-    redirect_to car_parks_url, notice: 'Car park was successfully destroyed.'
+    redirect_to car_parks_url, notice: 'Car park was successfully destroyed.', status: 303
   end
 
   private

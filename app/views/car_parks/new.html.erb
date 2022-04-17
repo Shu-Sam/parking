@@ -1,9 +1,8 @@
-<h1>New car park</h1>
-
-<%= render partial: 'form', locals: { car_park: @car_park, url: car_parks_path }  %>
-
-<br>
-
+<h3>New car park</h3>
 <div>
-  <%= link_to "Back", car_parks_path %>
+  <%= link_to "Back", car_parks_path, class: 'btn btn-primary btn-sm mb-3' %>
 </div>
+
+<%= turbo_frame_tag @car_park do %>
+  <%= render partial: 'form', locals: {car_park: @car_park, url: car_parks_path} %>
+<% end %>

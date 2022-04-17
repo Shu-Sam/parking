@@ -19,7 +19,7 @@
 
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><%= link_to 'Edit profile', edit_user_registration_path, class: 'nav-link text-white' %></li>
-              <li><%= link_to 'Logout', destroy_user_session_path, class: 'nav-link text-white', data: {method: :delete} %></li>
+              <li><%= link_to 'Logout', destroy_user_session_path, class: 'nav-link text-white', data: {turbo_method: :delete} %></li>
             </ul>
           </li>
 

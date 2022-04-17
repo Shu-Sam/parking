@@ -1,10 +1,6 @@
-<h1>Editing car park</h1>
+<h3>Editing car park</h3>
 
-<%= render partial: 'form', locals: { car_park: @car_park, url: car_park_path(@car_park) }  %>
-
-
-<br>
-
+<%= render partial: 'form', locals: {car_park: @car_park, url: car_park_path(@car_park)} %>
 <div>
-  <%= link_to "Back", car_parks_path %>
+  <%= link_to "Back", car_parks_path, class: 'btn btn-primary' %>
 </div>
