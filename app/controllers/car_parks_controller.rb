@@ -19,11 +19,27 @@ class CarParksController < ApplicationController
 
   def edit; end
 
+  # def create
+  #   @car_park = current_user.car_parks.build(car_park_params)
+  #   if CarPark::Creator.call(@car_park)
+  #     redirect_to car_parks_path, notice: 'Car park was successfully created.'
+  #   else
+  #     render :new
+  #   end
+  # end
+
   def create
-    if CarPark::Creator.call(car_park_params)
-      redirect_to car_parks_path, notice: 'Car park was successfully created.'
+    @car_park = current_user.car_parks.build(car_park_params)
+    if CarPark::Creator.call(@car_park)
+      respond_to do |format|
+        format.html { redirect_to car_parks_path, notice: 'Car park was successfully created.' }
+        format.turbo_stream {
+          @car_park
+          # render turbo_stream: turbo_stream.prepend('car_parks'), render: @car_parks
+          flash.now[:success] = 'Car park was successfully created!!!' }
+      end
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
@@ -47,7 +63,6 @@ class CarParksController < ApplicationController
   end
 
   def car_park_params
-    params.require(:ar_car_park).permit(:title, :address, :parking_type, :usage_fee, :discount,
-                                        :spaces).merge(user_id: current_user.id)
+    params.require(:ar_car_park).permit(:title, :address, :parking_type, :usage_fee, :discount, :spaces)
   end
 end
