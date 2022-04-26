@@ -1,0 +1,16 @@
+<% model = [local_assigns[:commentable], comment].compact %>
+<%= form_with model: model,
+              id: dom_id_for_records(*model),
+              data: local_assigns[:data],
+              class: ["my-2"] + Array.wrap(local_assigns[:class]) do |form| %>
+  <%= render 'shared/errors', object: form.object %>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.rich_text_area :body, id: "#{dom_id_for_records(*model)}_body", class: "form-control" %>
+  </div>
+
+  <%= form.submit class: "btn btn-primary btn-sm text-end" %>
+  <hr class="mt-0">
+  <%= link_to "Cancel", comment, class: "btn btn-link bnt-sm" if form.object.persisted? %>
+<% end %>

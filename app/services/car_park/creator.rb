@@ -1,19 +1,19 @@
 module CarPark
   class Creator < ApplicationService
-    attr_reader :attributes
+    attr_reader :car_park
 
-    def initialize(attributes)
-      @attributes = attributes
+    def initialize(car_park)
+      @car_park = car_park
     end
 
     def call
-      create_park_park
+      create
     end
 
     private
 
-    def create_park_park
-      Ar::CarPark.new(attributes).save
+    def create
+      car_park.save
     end
   end
 end

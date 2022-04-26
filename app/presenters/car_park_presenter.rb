@@ -3,6 +3,10 @@ class CarParkPresenter < ApplicationPresenter
     @model.title.capitalize
   end
 
+  def type
+    @model.parking_type.titleize
+  end
+
   def fee_currency_byn
     @view.number_to_currency(usage_fee, unit: 'BYN', precision: 1, format: '%n %u')
   end

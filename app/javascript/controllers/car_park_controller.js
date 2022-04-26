@@ -1,10 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Connects to data-controller="car-park"
 export default class extends Controller {
-  static targets = [ "form" ]
 
-  toggle(event) {
-    event.preventDefault()
-    this.formTarget.classList.toggle("d-none")
+  formSubmitEnd(e) {
+   if (e.detail.success) {
+     this.hideModal()
+   }
+  }
+
+  hideModal() {
+      this.element.remove()
   }
 }

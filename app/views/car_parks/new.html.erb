@@ -1,8 +1,10 @@
-<h3>New car park</h3>
-<div>
-  <%= link_to "Back", car_parks_path, class: 'btn btn-primary btn-sm mb-3' %>
-</div>
-
 <%= turbo_frame_tag @car_park do %>
-  <%= render partial: 'form', locals: {car_park: @car_park, url: car_parks_path} %>
+  <div data-controller="car-park" data-action="turbo:submit-end->car-park#formSubmitEnd" %>>
+    <div class="card border-dark p-2 mt-1 bg-secondary">
+      <div>
+        <%= link_to "Back", ar_car_parks_path, class: 'btn btn-primary btn-sm mb-2' %>
+      </div>
+      <%= render 'form', car_park: @car_park %>
+    </div>
+  </div>
 <% end %>

@@ -19,33 +19,30 @@ class CarParksController < ApplicationController
 
   def edit; end
 
-  # def create
-  #   @car_park = current_user.car_parks.build(car_park_params)
-  #   if CarPark::Creator.call(@car_park)
-  #     redirect_to car_parks_path, notice: 'Car park was successfully created.'
-  #   else
-  #     render :new
-  #   end
-  # end
-
   def create
     @car_park = current_user.car_parks.build(car_park_params)
     if CarPark::Creator.call(@car_park)
       respond_to do |format|
-        format.html { redirect_to car_parks_path, notice: 'Car park was successfully created.' }
-        format.turbo_stream {
+        format.html { redirect_to ar_car_parks_path, notice: 'Car park was successfully created.' }
+        format.turbo_stream do
           @car_park
-          # render turbo_stream: turbo_stream.prepend('car_parks'), render: @car_parks
-          flash.now[:success] = 'Car park was successfully created!!!' }
+          flash.now[:success] = 'Car park was successfully created!!!'
+        end
       end
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if CarPark::Updater.call(car_park_params, @car_park)
-      redirect_to car_park_path(@car_park), notice: 'Car park was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to ar_car_park_path(@car_park), notice: 'Car park was successfully updated.' }
+        format.turbo_stream do
+          @car_park
+          flash.now[:success] = 'Car park was successfully updated!'
+        end
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,7 +50,10 @@ class CarParksController < ApplicationController
 
   def destroy
     CarPark::Remover.call(@car_park)
-    redirect_to car_parks_url, notice: 'Car park was successfully destroyed.', status: 303
+    respond_to do |format|
+      format.html { redirect_to ar_car_park_index_path, notice: 'Car park was successfully destroyed.', status: :see_other }
+      format.turbo_stream { flash.now[:notice] = 'Car park was successfully destroyed' }
+    end
   end
 
   private
