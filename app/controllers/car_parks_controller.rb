@@ -24,10 +24,7 @@ class CarParksController < ApplicationController
     if CarPark::Creator.call(@car_park)
       respond_to do |format|
         format.html { redirect_to ar_car_parks_path, notice: 'Car park was successfully created.' }
-        format.turbo_stream do
-          @car_park
-          flash.now[:success] = 'Car park was successfully created!!!'
-        end
+        format.turbo_stream { flash.now[:success] = 'Car park was successfully created!!!' }
       end
     else
       render :new, status: :unprocessable_entity
@@ -38,10 +35,7 @@ class CarParksController < ApplicationController
     if CarPark::Updater.call(car_park_params, @car_park)
       respond_to do |format|
         format.html { redirect_to ar_car_park_path(@car_park), notice: 'Car park was successfully updated.' }
-        format.turbo_stream do
-          @car_park
-          flash.now[:success] = 'Car park was successfully updated!'
-        end
+        format.turbo_stream { flash.now[:success] = 'Car park was successfully updated!' }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -51,7 +45,7 @@ class CarParksController < ApplicationController
   def destroy
     CarPark::Remover.call(@car_park)
     respond_to do |format|
-      format.html { redirect_to ar_car_park_index_path, notice: 'Car park was successfully destroyed.', status: :see_other }
+      format.html { redirect_to ar_car_parks_path, notice: 'Car park was successfully destroyed.', status: :see_other }
       format.turbo_stream { flash.now[:notice] = 'Car park was successfully destroyed' }
     end
   end

@@ -16,7 +16,10 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.turbo_stream {}
+      format.turbo_stream do
+        flash.now[:success] = 'Comment was successfully deleted!'
+        render turbo_stream: turbo_stream.update('flash', partial: 'shared/flash')
+      end
       format.html { redirect_to @comment.commentable }
     end
   end

@@ -1,11 +1,13 @@
-class CarParks::CommentsController < ApplicationController
-  include Commentable
+module CarParks
+  class CommentsController < ApplicationController
+    include Commentable
 
-  before_action :set_commentable
+    before_action :set_commentable
 
-  private
+    private
 
-  def set_commentable
-    @commentable = CarPark::Finder.call(params[:ar_car_park_id])
+    def set_commentable
+      @commentable = CarPark::Finder.call(params[:ar_car_park_id])
+    end
   end
 end

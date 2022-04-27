@@ -1,12 +1,14 @@
-class Comments::CommentsController < ApplicationController
-  include Commentable
+module Comments
+  class CommentsController < ApplicationController
+    include Commentable
 
-  before_action :set_commentable
+    before_action :set_commentable
 
-  private
+    private
 
-  def set_commentable
-    @parent = Comment.find(params[:comment_id])
-    @commentable = @parent.commentable
+    def set_commentable
+      @parent = Comment.find(params[:comment_id])
+      @commentable = @parent.commentable
+    end
   end
 end
