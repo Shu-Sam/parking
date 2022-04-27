@@ -1,36 +1,38 @@
-<%= render 'shared/errors', object: @car_park %>
-<%= form_with model: car_park, url: url do |form| %>
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
+<%= form_with model: car_park do |form| %>
+  <%= render 'shared/errors', object: car_park %>
+  <div class="">
+    <div class="input-group mb-3">
+      <%= form.label :title, class: 'input-group-text' %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
 
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
-  </div>
+    <div class="input-group mb-3">
+      <%= form.label :address, class: 'input-group-text' %>
+      <%= form.text_field :address, class: 'form-control' %>
+    </div>
 
-  <div>
-    <%= form.label :parking_type, style: "display: block" %>
-    <%= form.select :parking_type, ["Ground parking", "Truck parking", "Underground guarded parking"] %>
-  </div>
+    <div class="input-group mb-3" >
+      <%= form.label :parking_type, :Type, class: 'input-group-text' %>
+      <%= form.select :parking_type, Ar::CarPark.parking_types.keys.map { |t| [t.titleize, t] }, {}, class: "form-select" %>
+    </div>
 
-  <div>
-    <%= form.label :usage_fee, style: "display: block" %>
-    <%= form.text_field :usage_fee %>
-  </div>
+    <div class="input-group mb-3">
+      <%= form.label :count_of_spaces, class: 'input-group-text' %>
+      <%= form.number_field :spaces, in: 0..10_000, class: 'form-control' %>
+    </div>
 
-  <div>
-    <%= form.label :discount, style: "display: block" %>
-    <%= form.number_field :discount %>
-  </div>
+    <div class="input-group mb-3">
+      <%= form.label :usage_fee, class: 'input-group-text' %>
+      <%= form.number_field :usage_fee, in: 0..100, class: 'form-control' %>
+    </div>
 
-  <div>
-    <%= form.label :count_of_spaces, style: "display: block" %>
-    <%= form.number_field :spaces %>
-  </div>
+    <div class="input-group mb-3">
+      <%= form.label :discount, class: 'input-group-text' %>
+      <%= form.number_field :discount, in: 0..25, class: 'form-control' %>
+    </div>
 
-  <div>
-    <%= form.submit %>
+    <div class="d-flex justify-content-end">
+      <%= form.submit class: "btn btn-success mt-1 btn-sm" %>
+    </div>
   </div>
 <% end %>

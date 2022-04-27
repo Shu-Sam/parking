@@ -1,3 +1,6 @@
 <% flash.each do |key, message| %>
-  <%= content_tag :div, message, class: bootstrap_class_for(key) %>
+  <div data-controller="flash" class="alert <%= bootstrap_class_for(key) %> alert-dismissible fade show">
+    <%= content_tag :div, message %>
+    <button type="button" data-action="flash#dismiss" class="btn-close"></button>
+  </div>
 <% end %>

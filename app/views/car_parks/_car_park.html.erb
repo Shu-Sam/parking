@@ -1,8 +1,8 @@
 <tbody>
-  <% present(cp, CarParkPresenter) do |car_park| %>
+  <% present(car_park, CarParkPresenter) do |car_park| %>
     <tr class="text-center">
-      <td><%= link_to 'Book', '#' , class: 'btn btn-success'%></td>
-      <td><%= car_park.title %></td>
+      <td><%= link_to 'Book', '#', class: 'btn btn-success' %></td>
+      <td><%= link_to car_park.title, ar_car_park_path(car_park) %></td>
       <td><%= car_park.address %></td>
       <td><%= car_park.user.name %></td>
       <td><%= car_park.spaces %></td>
