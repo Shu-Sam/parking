@@ -1,0 +1,2 @@
+<%= turbo_stream.replace(@car_park, partial: 'owner_car_park', locals: { parking: @car_park }) %>
+<%= turbo_stream.prepend('flash', partial: 'shared/flash') %>

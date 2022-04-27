@@ -1,28 +1,38 @@
+<%= turbo_frame_tag  dom_id(@car_park, :show) do %>
   <% present(@car_park, CarParkPresenter) do |car_park| %>
-    <p>
-      <strong>Title:</strong>
-      <%= car_park.title %>
-    </p>
-    <p>
-      <strong>Title:</strong>
-      <%= car_park.address %>
-    </p>
-    <p>
-      <strong>Type:</strong>
-      <%= car_park.parking_type %>
-    </p>
-    <p>
-      <strong>Usage fee:</strong>
-      <%= car_park.fee_currency_byn %>
-    </p>
-    <p>
-      <strong>Discount:</strong>
-      <%= car_park.discount_percentage %>
-    </p>
-    <p>
-      <strong>Number of spaces:</strong>
-      <%= car_park.spaces %>
-    </p>
-  <% end %>
+    <div class="card bg-info m-1 border-secondary">
+      <div class="text-end">
+        <%= link_to "Back", ar_car_parks_path, class: 'btn btn-sm btn-secondary m-2', data: { turbo_frame: '_top' } %>
+      </div>
+      <dl class="row">
+        <dt class="col-sm-5 text-end">Title</dt>
+        <dd class="col-sm-7"><%= car_park.title %></dd>
 
-<%= link_to "Back", car_parks_path, class: 'btn btn-sm btn-primary' %>
+        <dt class="col-sm-5 text-end">Address</dt>
+        <dd class="col-sm-7"><%= car_park.address %></dd>
+
+        <dt class="col-sm-5 text-end">Type</dt>
+        <dd class="col-sm-7"><%= car_park.type %></dd>
+
+        <dt class="col-sm-5 text-end">Usage fee</dt>
+        <dd class="col-sm-7"><%= car_park.fee_currency_byn %></dd>
+
+        <dt class="col-sm-5 text-end">Discount</dt>
+        <dd class="col-sm-7"><%= car_park.discount_percentage %></dd>
+
+        <dt class="col-sm-5 text-end">Spaces</dt>
+        <dd class="col-sm-7"><%= car_park.spaces %></dd>
+      </dl>
+    </div>
+
+    <div class="bg-body card m-1">
+      <h3 class="text-center">Comments</h3>
+      <%= render partial: 'comments/form', locals: { comment: Comment.new, commentable: car_park } %>
+      <%= turbo_stream_from car_park, :comments %>
+      <%= tag.div id: "#{(dom_id(car_park))}_comments" do %>
+        <%= render partial: "comments/comment_with_replies", collection: car_park.comments.where(parent_id: nil), as: :comment %>
+      <% end %>
+    </div>
+
+  <% end %>
+<% end %>

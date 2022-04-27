@@ -1,20 +1,22 @@
-<div class="text-center text-wrap fs-3 fw-bold">
-  <%= current_user.name %>'s parking
-</div>
-
-<%= link_to "New car park", new_car_park_path, class: 'btn btn-success mb-1' %>
-
-<table class="table table-dark table-striped table-sm">
-  <div id="car_parks">
-    <% @car_parks.each do |cp| %>
-      <% present(cp, CarParkPresenter) do |car_park| %>
-      <tr>
-        <td><%= link_to  "#{car_park.title}", '#', class: 'btn text-warning' %></td>
-        <td><%= link_to 'Edit', edit_car_park_path(car_park), class: 'btn btn-sm btn-secondary' %></td>
-        <td><%= link_to 'Show', car_park_path(car_park), class: 'btn btn-sm btn-primary' %></td>
-        <td><%= link_to 'Delete', car_park_path(car_park), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger' %></td>
-      </tr>
+<div class="container mt-lg-3">
+  <div class="row">
+    <div class="col col-md-8 ">
+      <div class="row justify-content-center text-center text-wrap fs-3 fw-bold">
+        <div class="col-8">
+          <%= current_user.name %>'s parking
+        </div>
+        <div class="col-4 text-end ">
+          <%= link_to "New parking", new_ar_car_park_path,
+                      class: 'btn rounded bg-secondary text-warning',
+                      data: { turbo_frame: dom_id(Ar::CarPark.new) } %>
+        </div>
+      </div>
+      <%= turbo_frame_tag 'owner_car_parks' do %>
+        <%= render partial: 'owner_car_park', collection: @car_parks, as: :parking %>
       <% end %>
-    <% end %>
+    </div>
+    <div class="container col cols-md-4 mt-3 row">
+      <%= turbo_frame_tag Ar::CarPark.new %>
+    </div>
   </div>
-</table>
+</div>
