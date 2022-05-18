@@ -1,0 +1,54 @@
+<%= simple_form_for [car_park, reservation] do |f| %>
+  <%= render 'shared/errors', object: reservation %>
+  <div class="row mt-2">
+    <div class="col col-sm-8 rounded-3">
+      <div class="hide"></div>
+      <div class="space rounded-3 d-inline-flex align-items-start border-danger" >
+        <%= f.text_field :start_date, label: "Dates", placeholder: "From", class: "border-secondary",
+                         data: {
+                             controller: "flatpickr",
+                             flatpickr_min_date: Reservation.min_day,
+                             flatpickr_max_date: Reservation.max_day,
+                             flatpickr_disable: car_park.unavailable_dates
+                         } %>
+
+        <%= f.text_field :end_date, placeholder: "To", class: "form-control border-secondary" %>
+      </div>
+    </div>
+
+    <div class="col-sm-4 costs costs-hidden m-0" data-rate="<%= car_park.usage_fee.to_json %>">
+      <table class="table table-info border-secondary ">
+        <tr>
+          <td><span id="days">0</span> days x <%=car_park.usage_fee %> BYN</td>
+          <td class="text-right"><span id="usage_fee">0</span> BYN</td>
+        </tr>
+        <tr>
+          <td>Discount</td>
+          <td class="text-right"><span id="discount"><%= car_park.discount %></span>%</td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td class="text-right"><span id=total-price>0</span> BYN</td>
+        </tr>
+      </table>
+
+      <div class="text-center my-2">
+        <%= f.submit "Book", class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="text-sm-center fs-4 text-decoration-underline my-3">
+  Calendar of available parking spaces
+</div>
+
+<div class="container">
+  <% Reservation.available_range.each do |d| %>
+    <div class="row d-inline-block text-center p-0 m-0">
+      <div class="label-date "><%= d.strftime('%d %b') %></div>
+      <div class="spaces border-dark border-bottom text-danger"><%= car_park.count_available_spaces(d) %></div>
+    </div>
+  <% end %>
+</div>

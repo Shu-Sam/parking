@@ -1,0 +1,12 @@
+<div class="">
+  <div class="text-sm-center fs-4 text-decoration-underline">
+    Booking "<%= @car_park.title %>" parking
+  </div>
+  <div>
+    <%= link_to "Back", ar_car_parks_path, class: 'btn btn-primary btn-sm mt-2' %>
+  </div>
+
+  <div class="widget-content">
+    <%= render partial: 'form', locals: { reservation: @reservation, car_park: @car_park } %>
+  </div>
+</div>

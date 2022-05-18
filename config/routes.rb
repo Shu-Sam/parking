@@ -4,7 +4,14 @@ Rails.application.routes.draw do
 
   resources :car_parks, as: 'ar_car_park' do
    resources :comments, module: :car_parks
+   resources :reservations, only: [:new, :create, :edit, :update] do
+     collection do
+       get 'owner_index'
+     end
+   end
   end
+
+  resources :reservations, only: [:index, :destroy]
 
   resources :car_parks, as: 'ar_car_parks', only: :index do
     resources :comments, module: :car_parks, only: :index
@@ -13,4 +20,5 @@ Rails.application.routes.draw do
   resources :comments do
     resources :comments, module: :comments
   end
+
 end
