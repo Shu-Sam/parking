@@ -4,6 +4,7 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
+    @pagy_a, @available_reservations = pagy_array(Reservation.available_range.to_a, items: 21)
   end
 
   def owner_index
@@ -12,10 +13,11 @@ class ReservationsController < ApplicationController
 
   def index
     if current_user&.owner_role?
-      # @current_reservations = current_user.reservations.current_reservations
+      @current_reservations = Reservation.owner_list(current_user).current_reservations
+      @past_reservations = Reservation.owner_list(current_user).past_reservations.limit(20)
     else
       @current_reservations = current_user.reservations.current_reservations
-      @past_reservations = current_user.reservations.past_reservations
+      @past_reservations = current_user.reservations.past_reservations.limit(20)
     end
   end
 
@@ -29,6 +31,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       redirect_to action: :index
+      flash[:success] = 'Reservation was successfully created'
     else
       render :new, status: :unprocessable_entity
     end

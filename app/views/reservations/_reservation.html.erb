@@ -1,7 +1,13 @@
 <div class="row border border-dark bg-light my-1 rounded-3">
-  <div class="row col col-5 p-1 mx-2 text-truncate">
-    <%= link_to "'#{reservation.car_park.title}', #{reservation.car_park.address}", reservations_path, class: ' btn bnt-link ' %>
+  <div class="row col col-4 p-1 mx-2 text-truncate">
+    <%= link_to "'#{ reservation.car_park.title }', #{ reservation.car_park.address }", reservations_path, class: ' btn bnt-link ' %>
   </div>
+  <% if current_user&.owner_role? %>
+    <div class="row col-2">
+      <div class="text-sm-center text-info fst-italic"> Email </div>
+      <%= reservation.user.email %>
+    </div>
+  <% end %>
   <div class="row col col-4 bg-white mx-2 rounded ">
     <div class="col col-5 ">
       <div class="text-sm-center text-info fst-italic"> Arrival </div>

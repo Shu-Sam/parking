@@ -1,6 +1,6 @@
 <%= turbo_frame_tag  dom_id(@car_park, :show) do %>
   <% present(@car_park, CarParkPresenter) do |car_park| %>
-    <div class="card bg-info m-1 border-secondary">
+    <div class="card m-1 border-secondary">
       <div class="text-end">
         <%= link_to "Back", ar_car_parks_path, class: 'btn btn-sm btn-secondary m-2', data: { turbo_frame: '_top' } %>
       </div>

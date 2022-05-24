@@ -57,8 +57,8 @@ export default class extends Flatpickr {
     updateCosts(count_days) {
         const costs = document.querySelector('.costs')
 
-        if (costs) {
-            let daysElem = document.getElementById('days')
+        if (!costs) return
+        let daysElem = document.getElementById('days')
             let priceElem = document.getElementById('usage_fee')
             let discountElem = document.getElementById('discount')
             let totalPriceElem = document.getElementById('total-price')
@@ -71,6 +71,5 @@ export default class extends Flatpickr {
             daysElem.innerHTML = count_days
             priceElem.innerHTML = price.toFixed(2)
             totalPriceElem.innerHTML = totalPrice.toFixed(2)
-        }
     }
 }

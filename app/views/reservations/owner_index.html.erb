@@ -8,7 +8,7 @@
         </div>
       </div>
 
-      <% @car_park.reservations.includes([:user]).current_reservations.each do |res|  %>
+      <% @car_park.reservations.includes(:user).current_reservations.each do |res|  %>
         <div>
           <%= res.user.name %> <%= res.user.email %>
           <%= res.start_date %> <%= res.end_date %>

@@ -10,6 +10,10 @@ class Reservation < ApplicationRecord
 
   scope :current_reservations, -> { where('end_date >= ?', Time.now) }
   scope :past_reservations, -> { where('end_date < ?', Time.now) }
+  scope :owner_list, lambda { |user|
+    select('users.email, car_park.user_id, reservations.car_park_id, reservations.start_date, reservations.end_date')
+      .joins(:car_park, :user).where(car_park: { user_id: user.id }).includes([:user])
+  }
 
   def self.available_range
     min_day..max_day
