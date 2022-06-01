@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   enum role: { driver: 0, owner: 1, admin: 2 }, _suffix: :role
 
-  has_many :car_parks, class_name: 'Ar::CarPark'
+  has_many :reservations
   has_many :comments
+  has_many :car_parks, class_name: 'Ar::CarPark'
 end

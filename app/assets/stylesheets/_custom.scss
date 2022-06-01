@@ -6,3 +6,18 @@
     color: $red;
   }
 }
+
+.widget-content {
+  width: 100%;
+
+  .costs {
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 2000ms ease-in-out;
+  }
+
+  .costs.is-visible {
+    max-height: 999em;
+  }
+}

@@ -7,7 +7,7 @@
 
 
       <div class="row col col-sm-7 p-1 mx-3">
-        <%= link_to "#{car_park.title}", '#', class: 'text-link btn bg-warning' %>
+        <%= link_to "#{car_park.title}", owner_index_ar_car_park_reservations_path(car_park), class: 'text-link btn bg-warning', data: { turbo_frame: '_top' } %>
       </div>
       <div class="col btn-group btn ">
         <%= link_to 'Edit', edit_ar_car_park_path(car_park), class: 'btn btn-sm btn-primary', data: { turbo_frame: dom_id(Ar::CarPark.new) } %>

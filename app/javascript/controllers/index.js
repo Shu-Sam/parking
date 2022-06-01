@@ -6,9 +6,6 @@ import { application } from "./application"
 
 // import CarParkController from "./car_park_controller.js"
 // application.register("car-park", CarParkController)
-//
-// import FlashController from "./flash_controller.js"
-// application.register("flash", FlashController)
 
 import controllers from "./**/*_controller.js"
 controllers.forEach((controller) => {

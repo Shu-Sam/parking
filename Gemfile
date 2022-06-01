@@ -30,6 +30,10 @@ gem 'draper', '~> 4.0'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.12'
 
+gem "simple_form", "~> 5.1"
+
+gem "pagy", "~> 5.10"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

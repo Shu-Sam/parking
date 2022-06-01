@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def bootstrap_class_for(key)
     {
       success: 'alert-success',
