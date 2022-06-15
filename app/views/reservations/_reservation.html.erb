@@ -1,0 +1,25 @@
+<div class="row border border-dark bg-light my-1 rounded-3">
+  <div class="row col col-4 p-1 mx-2 text-truncate">
+    <%= link_to "'#{ reservation.car_park.title }', #{ reservation.car_park.address }", reservations_path, class: ' btn bnt-link ' %>
+  </div>
+  <% if current_user&.owner_role? %>
+    <div class="row col-2">
+      <div class="text-sm-center text-info fst-italic"> Email </div>
+      <%= reservation.user.email %>
+    </div>
+  <% end %>
+  <div class="row col col-4 bg-white mx-2 rounded ">
+    <div class="col col-5 ">
+      <div class="text-sm-center text-info fst-italic"> Arrival </div>
+      <%= reservation.start_date %>
+    </div>
+    <div class="col col-5 ">
+      <div class="text-sm-center text-info fst-italic">Departure</div>
+      <%= reservation.end_date %>
+    </div>
+  </div>
+  <div class="col col-sm-1 btn-group btn ">
+    <%= link_to 'Edit', edit_ar_car_park_reservation_path(reservation.car_park, reservation), class: 'btn btn-sm btn-primary' %>
+    <%= link_to 'Delete', reservation_path(reservation), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-sm  btn-danger text-white' %>
+  </div>
+</div>

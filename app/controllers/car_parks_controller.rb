@@ -7,7 +7,7 @@ class CarParksController < ApplicationController
       @car_parks = current_user.car_parks
       render 'owner_index'
     else
-      @car_parks = Ar::CarPark.all
+      @car_parks = Ar::CarPark.includes([:user]).all
     end
   end
 

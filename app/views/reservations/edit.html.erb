@@ -1,0 +1,9 @@
+<div class="">
+  <div class="text-sm-center fs-4 text-decoration-underline">
+    Editing the booking date "<%= @reservation.car_park.title %>" parking
+  </div>
+  <div>
+    <%= link_to "Back", reservations_path, class: 'btn btn-primary btn-sm mt-2' %>
+  </div>
+  <%= render partial: 'form', locals: { reservation: @reservation, car_park: @reservation.car_park } %>
+</div>
