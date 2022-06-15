@@ -1,20 +1,17 @@
-
 <%= turbo_frame_tag parking do %>
   <% present(parking, CarParkPresenter) do |car_park| %>
 
     <div class="row border border-dark bg-dark my-1 rounded-3">
       <%= turbo_frame_tag dom_id(car_park, :show), class: "row" do %>
-
-
-      <div class="row col col-sm-7 p-1 mx-3">
-        <%= link_to "#{car_park.title}", owner_index_ar_car_park_reservations_path(car_park), class: 'text-link btn bg-warning', data: { turbo_frame: '_top' } %>
-      </div>
-      <div class="col btn-group btn ">
-        <%= link_to 'Edit', edit_ar_car_park_path(car_park), class: 'btn btn-sm btn-primary', data: { turbo_frame: dom_id(Ar::CarPark.new) } %>
-        <%= link_to 'Show', ar_car_park_path(car_park), class: 'btn btn-sm bg-info', data: { turbo_frame: dom_id(car_park, :show) } %>
-        <%= link_to 'Delete', ar_car_park_path(car_park), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-sm  btn-outline-danger text-white' %>
-      </div>
-          <% end %>
+        <div class="row col col-sm-7 p-1 mx-3">
+          <%= link_to "#{car_park.title}", owner_index_ar_car_park_reservations_path(car_park), class: 'text-link btn bg-warning', data: { turbo_frame: '_top' } %>
+        </div>
+        <div class="col btn-group btn ">
+          <%= link_to 'Edit', edit_ar_car_park_path(car_park), class: 'btn btn-sm btn-primary', data: { turbo_frame: dom_id(Ar::CarPark.new) } %>
+          <%= link_to 'Show', ar_car_park_path(car_park), class: 'btn btn-sm bg-info', data: { turbo_frame: dom_id(car_park, :show) } %>
+          <%= link_to 'Delete', ar_car_park_path(car_park), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-sm  btn-outline-danger text-white' %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 <% end %>

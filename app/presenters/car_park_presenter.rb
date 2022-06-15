@@ -3,6 +3,10 @@ class CarParkPresenter < ApplicationPresenter
     @model.title.capitalize
   end
 
+  def with_highlight(text, phrase)
+    @view.highlight(text, phrase, highlighter: '<b class="bg-warning">\1</b>')
+  end
+
   def type
     @model.parking_type.titleize
   end
