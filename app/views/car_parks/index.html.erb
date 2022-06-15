@@ -2,15 +2,45 @@
   Available car parks
 </div>
 
-<table class="table table-info table-striped table-sm ">
-  <tr class="text-center">
-    <th></th>
-    <th>Title</th>
-    <th>Address</th>
-    <th>Owner</th>
-    <th>Spaces</th>
-    <th>Parking type</th>
-    <th>Usage fee/ per hour</th>
-  </tr>
-  <%= render partial: 'car_park', collection: @car_parks, as: :car_park %>
-</table>
+<div class="container col col-10 ">
+  <div class="row">
+      <%= form_with url: root_path, method: :get, data: { turbo_frame: 'search-results',
+                                                          turbo_action: 'advance',
+                                                          controller: 'search',
+                                                          action: 'change->search#submit' } do |f| %>
+      <div class="col-6 rounded-3 text-end">Filter by free parking for a period of time
+        <div class="input-group justify-content-end">
+          <%= f.label :start_date, 'From:', class: 'form-label mx-2' %>
+          <div id="start_date" class="">
+            <%= select_date(Reservation.min_day, prefix: 'start', :order => [:day, :month, :year]) %>
+          </div>
+        </div>
+
+        <div class="input-group justify-content-end">
+          <%= f.label :end_date, 'To:', class: 'form-label mx-2' %>
+          <div id="end_date" class="">
+            <%= select_date(Reservation.max_day, prefix: 'end', :order => [:day, :month, :year]) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+    <%= turbo_frame_tag "search-results" do %>
+      <%#=params.inspect %>
+      <table class="table table-info table-striped table-sm ">
+        <tr class="text-center">
+          <th></th>
+          <th>Title</th>
+          <th>Address</th>
+          <th>Owner</th>
+          <th>Spaces</th>
+          <th>Parking type</th>
+          <th>Hourly fee</th>
+        </tr>
+
+        <%= render partial: 'car_park', collection: @car_parks, as: :car_park, locals: { phrase: params[:address_search] } %>
+      </table>
+    <% end %>
+
+</div>

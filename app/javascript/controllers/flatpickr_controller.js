@@ -15,7 +15,7 @@ export default class extends Flatpickr {
             inline: true,
             allowInput: true,
             mode: 'range',
-            "plugins": [new rangePlugin({ input: "#reservation_end_date"})],
+            "plugins": [new rangePlugin({ input: "#reservation_end_date"})]
         }
         super.connect()
     }

@@ -23,7 +23,9 @@ class ReservationsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    @pagy_a, @available_reservations = pagy_array(Reservation.available_range.to_a, items: 21)
+  end
 
   def create
     @reservation = current_user.reservations.build(reservation_params)

@@ -5,8 +5,17 @@
         <li><%= link_to image_tag("nav_parking_sign.jpeg", size: "40", class: "rounded"), root_path, title: 'Home page', class: 'navbar-brand px-2' %></li>
         <li><%= link_to 'Home', root_path , class: 'nav-link px-2 text-white' %></li>
         <li><%= link_to 'Bookings', reservations_path, class: 'nav-link px-2 text-white' %></li>
-<!--        <li><%#= link_to 'Comments', '#' , class: 'nav-link px-2 text-white' %></li>-->
-      </ul>
+     </ul>
+
+      <div class="d-flex">
+        <%= form_with url: root_path, method: :get, data: { turbo_frame: 'search-results',
+                                                           turbo_action: 'advance',
+                                                           controller: 'search',
+                                                           action: 'input->search#submit' } do %>
+          <%= text_field_tag 'address_search', nil, placeholder: 'Type parking address or title', class: 'form-control' %>
+        <% end %>
+      </div>
+
 
       <ul class="nav-bar nav col-12 col-lg-auto mb-2 mb-md-0">
         <% if user_signed_in? %>

@@ -7,7 +7,10 @@ class CarParksController < ApplicationController
       @car_parks = current_user.car_parks
       render 'owner_index'
     else
-      @car_parks = Ar::CarPark.includes([:user]).all
+      @car_parks = Ar::CarPark.includes([:user]).search(params)
+      return if params[:start].blank? && params[:end].blank?
+
+      @car_parks = Ar::CarPark.includes([:user]).date_filter(params)
     end
   end
 
